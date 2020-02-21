@@ -1,26 +1,26 @@
 import Sequelize, { Model } from 'sequelize';
 
-class City extends Model {
+class Tag extends Model {
   static init(sequelize) {
     super.init(
       {
-        name: Sequelize.STRING,
+        title: Sequelize.STRING,
       },
       {
         sequelize,
       }
     );
-
     return this;
   }
 
   static associate(models) {
-    this.belongsToMany(models.User, {
-      through: 'user_cities',
-      as: 'users',
-      foreignKey: 'user_id',
+    this.belongsToMany(models.Post, {
+      through: 'tag_posts',
+      as: 'posts',
+      foreignKey: 'tag_id',
     });
   }
+
 }
 
-export default City;
+export default Tag;
